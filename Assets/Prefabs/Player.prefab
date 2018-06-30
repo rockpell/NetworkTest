@@ -418,6 +418,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1277470050486580}
+  axes: 0
+  sensitivityX: 5
+  sensitivityY: 5
+  minimumX: -360
+  maximumX: 360
+  minimumY: -60
+  maximumY: 60
+  frameCounter: 5
 --- !u!114 &114292359208556502
 MonoBehaviour:
   m_ObjectHideFlags: 1

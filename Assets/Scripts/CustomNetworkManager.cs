@@ -23,6 +23,8 @@ public class CustomNetworkManager : NetworkManager
     public override void OnServerConnect(NetworkConnection conn)
     {
         Debug.Log("A client connected to the server: " + conn);
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
@@ -69,5 +71,23 @@ public class CustomNetworkManager : NetworkManager
         Debug.Log("Host has stopped");
         if(mainCamera != null)
             mainCamera.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
+        Debug.Log("OnClientConnect");
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        base.OnClientDisconnect(conn);
+        Debug.Log("OnClientDisconnect");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
