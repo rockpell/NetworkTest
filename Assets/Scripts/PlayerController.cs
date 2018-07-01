@@ -24,8 +24,6 @@ public class PlayerController : NetworkBehaviour {
 	void Update () {
         if (!isLocalPlayer)
         {
-            //transform.position = Vector3.Lerp(transform.position, realPosition, Time.deltaTime * 1.5f);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, Time.deltaTime * 3f);
             return;
         }
         //float x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
@@ -36,9 +34,13 @@ public class PlayerController : NetworkBehaviour {
         //transform.Translate(0, 0, z);
         //transform.Translate(x, 0, z);
 
-        myRigidbody.MovePosition(transform.position + transform.forward * z + transform.right * x);
+        //myRigidbody.MovePosition(transform.position + transform.forward * z + transform.right * x);
+
+        Vector3 targetPosition = (transform.forward * z + transform.right * x) * 60f;
+        targetPosition.y = myRigidbody.velocity.y;
+        myRigidbody.velocity = targetPosition;
+
         //myRigidbody.AddForce(transform.forward * z + transform.right * x * 10f);
-        //Debug.Log("dfdfd:   " + (transform.forward * z + transform.right * x * 10f));
         MouseControl();
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
